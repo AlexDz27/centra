@@ -1,13 +1,20 @@
 <?php
 namespace KanbanBoard;
 
+// var_dump(__DIR__);
+// var_dump(realpath(dirname(dirname(__DIR__))));
+// die();
+
+// $dotenv = Dotenv\Dotenv::createImmutable(realpath(dirname(dirname(__DIR__))));
+// $dotenv->load();
+
 class Utilities
 {
 	private function __construct() {
 	}
 
 	public static function env($name, $default = NULL) {
-		$value = getenv($name);
+		$value = $_ENV[$name];
 		if($default !== NULL) {
 			if(!empty($value))
 				return $value;

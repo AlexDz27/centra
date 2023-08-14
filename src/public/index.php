@@ -1,16 +1,19 @@
 <?php
 
-phpinfo();
-var_dump(getenv('OS'));
-die();
+require dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 
 use KanbanBoard\Authentication;
 use KanbanBoard\GithubActual;
 use KanbanBoard\Utilities;
+use Dotenv\Dotenv;
 
 require '../classes/KanbanBoard/Github.php';
 require '../classes/Utilities.php';
 require '../classes/KanbanBoard/Authentication.php';
+require '../../vendor/vlucas/phpdotenv/src/Dotenv.php';
+
+$dotenv = Dotenv::createImmutable(realpath(dirname(dirname(__DIR__))));
+$dotenv->load();
 
 $repositories = explode('|', Utilities::env('GH_REPOSITORIES'));
 $authentication = new \KanbanBoard\Login();
